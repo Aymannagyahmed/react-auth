@@ -1,23 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
-
+import {useState} from "react";
+import {signin,signout,signup,is_auth} from './auth/auth';
+import SignIn from './components/SignIn/SignIn';
+import SignOut from './components/SignOut/SignOut';
+import SignUp from './components/SignUp/SignUp';
 function App() {
+  const [islogedin,setLogedIn] = useState(false);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {islogedin ? <SignOut  setLogedIn={setLogedIn} /> : 
+      (<> <div> <SignIn setLogedIn={setLogedIn} /> </div>
+            <br />
+            <br />
+            <br />
+          <div> <SignUp setLogedIn={setLogedIn} /> </div>
+      </>) }
+      
+
     </div>
   );
 }
